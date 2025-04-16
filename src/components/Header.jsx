@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
   return (
@@ -30,12 +31,18 @@ export default function Header() {
             >
               About
             </Link>
-            <Link
-              href="/sign-in"
-              className="rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2.5 text-base font-medium text-white shadow-md hover:shadow-lg"
-            >
-              Sign in
-            </Link>
+            <SignedIn>
+              <div className="ml-2">
+                <UserButton afterSignOutUrl="/" />
+              </div>
+            </SignedIn>
+            <SignedOut>
+              <SignInButton>
+                <button className="rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 text-base font-medium text-white shadow-lg transition hover:from-cyan-600 hover:to-blue-600 hover:shadow-xl">
+                  Sign In
+                </button>
+              </SignInButton>
+            </SignedOut>
           </nav>
         </div>
       </div>
