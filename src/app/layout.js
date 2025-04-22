@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import { ClerkProvider, ClerkLoading, ClerkLoaded } from "@clerk/nextjs";
 
@@ -17,7 +18,7 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Next Auth",
-  description: "Next Auth with clerk and mongoDB",
+  description: "Next Auth with Clerk and MongoDB",
 };
 
 export default function RootLayout({ children }) {
@@ -25,14 +26,15 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
         >
           <ClerkLoading>
             <Loader />
           </ClerkLoading>
           <ClerkLoaded>
             <Header />
-            {children}
+            <main className="min-h-screen">{children}</main>
+            <Footer />
           </ClerkLoaded>
         </body>
       </html>
